@@ -1,0 +1,10 @@
+craft/storage/runtime/*
+craft/storage/backups/*
+
+public/assets/uploads/*
+
+craft/config/db.php
+
+.DS_Store
+*.sublime-workspace
+*.sublime-project
