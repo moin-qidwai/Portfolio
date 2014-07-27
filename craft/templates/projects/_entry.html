@@ -1,0 +1,37 @@
+{% extends "_layout" %}
+
+{% block header %}
+<div class="top-banner" style="background-image: url({{ entry.bannerImage[0].url }})">
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container entry-content-div">
+	<div class="entry-title">
+		<h2>{{ entry.title }}</h2>
+	</div>
+	<div class="entry-text1">
+		<p>{{ entry.text }}</p>
+	</div>
+	<div class="row">
+		{% for image in entry.extraImages %}
+		<div class="col-md-3 col-sm-3" style="background: url({{ image.url }}) no-repeat center cover;"></div>
+		{% endfor %}
+	</div>
+	<div class="entry-text2">
+		<p>{{ entry.bottomText }}</p>
+	</div>
+
+	
+</div>
+{% endblock %}
+
+
+{% block footer %}
+
+<div class="container text-center">
+<p class="text-muted">Copyright &copy; Moin Qidwai 2014</p>
+</div>
+
+{% endblock %}
