@@ -90,7 +90,7 @@
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="{{ entry.url }}">
-                                    <div class="project-item" style="background-image: url('{{ entry.bannerImage[0].url }}');">
+                                    <div class="project-item" style="background-image: url('{{ entry.bannerImage[0].getUrl() }}');">
                                         <div class="text-vertical-center gray-overlay">
                                             <p class="project-item-text">{{ entry.title }}</p>
                                         </div>
