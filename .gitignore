@@ -10,3 +10,6 @@ Craft-2.1.2564.zip
 .DS_Store
 *.sublime-workspace
 *.sublime-project
+
+install/
+portfolio.sql
