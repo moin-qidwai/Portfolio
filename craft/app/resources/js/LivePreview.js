@@ -1,11 +1,9 @@
 /**
- * Craft by Pixel & Tonic
- *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.resources
  */
 
 (function($) {
@@ -208,14 +206,14 @@ Craft.LivePreview = Garnish.Base.extend(
 		$('html').addClass('noscroll');
 		this.$spinner.addClass('hidden');
 
-		this.$shade.fadeIn();
+		this.$shade.velocity('fadeIn');
 
-		this.$editor.show().stop().animateLeft(0, 'slow', $.proxy(function()
+		this.$editor.show().velocity('stop').animateLeft(0, 'slow', $.proxy(function()
 		{
 			this.trigger('slideIn');
 			Garnish.$win.trigger('resize');
 		}, this));
-		this.$iframeContainer.show().stop().animateRight(0, 'slow', $.proxy(function()
+		this.$iframeContainer.show().velocity('stop').animateRight(0, 'slow', $.proxy(function()
 		{
 			this.updateIframeInterval = setInterval($.proxy(this, 'updateIframe'), 1000);
 
@@ -252,9 +250,9 @@ Craft.LivePreview = Garnish.Base.extend(
 
 		var windowWidth = Garnish.$win.width();
 
-		this.$shade.delay(200).fadeOut();
+		this.$shade.delay(200).velocity('fadeOut');
 
-		this.$editor.stop().animateLeft(-this.editorWidth, 'slow', $.proxy(function()
+		this.$editor.velocity('stop').animateLeft(-this.editorWidth, 'slow', $.proxy(function()
 		{
 			for (var i = 0; i < this.fields.length; i++)
 			{
@@ -264,7 +262,7 @@ Craft.LivePreview = Garnish.Base.extend(
 			this.trigger('slideOut');
 		}, this));
 
-		this.$iframeContainer.stop().animateRight(-this.getIframeWidth(), 'slow', $.proxy(function()
+		this.$iframeContainer.velocity('stop').animateRight(-this.getIframeWidth(), 'slow', $.proxy(function()
 		{
 			this.$iframeContainer.hide();
 		}, this));
@@ -331,12 +329,14 @@ Craft.LivePreview = Garnish.Base.extend(
 			this.loading = true;
 
 			var data = $.extend({}, postData, this.basePostData),
-				scrollTop = $(this.$iframe[0].contentWindow.document).scrollTop();
+				$doc = $(this.$iframe[0].contentWindow.document),
+				scrollX = $doc.scrollLeft(),
+				scrollY = $doc.scrollTop();
 
 			$.post(this.postUrl, data, $.proxy(function(response)
 			{
 				var html = response +
-					'<script type="text/javascript">document.body.scrollTop = '+scrollTop+';</script>';
+					'<script type="text/javascript">window.scrollTo('+scrollX+', '+scrollY+');</script>';
 
 				// Set the iframe to use the same bg as the iframe body,
 				// to reduce the blink when reloading the DOM

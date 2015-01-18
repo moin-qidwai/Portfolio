@@ -2,22 +2,26 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * Class TemplateHelper
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- *
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.helpers
+ * @since     1.0
  */
 class TemplateHelper
 {
+	// Public Methods
+	// =========================================================================
+
 	/**
 	 * Paginates an ElementCriteriaModel instance.
+	 *
+	 * @param ElementCriteriaModel $criteria
+	 *
+	 * @return array
 	 */
 	public static function paginateCriteria(ElementCriteriaModel $criteria)
 	{
@@ -53,17 +57,19 @@ class TemplateHelper
 		$paginateVariable->currentPage = $currentPage;
 		$paginateVariable->totalPages = $totalPages;
 
-		// Get the entities
+		// Copy the criteria, set the offset, and get the elements
+		$criteria = $criteria->copy();
 		$criteria->offset = $offset;
-		$entities = $criteria->find();
+		$elements = $criteria->find();
 
-		return array($paginateVariable, $entities);
+		return array($paginateVariable, $elements);
 	}
 
 	/**
 	 * Returns a string wrapped in a \Twig_Markup object
 	 *
 	 * @param $value
+	 *
 	 * @return \Twig_Markup
 	 */
 	public static function getRaw($value)

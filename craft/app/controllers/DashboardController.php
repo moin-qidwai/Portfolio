@@ -2,22 +2,27 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * The DashboardController class is a controller that handles various dashboardrelated actions including managing
+ * widgets, getting {@link FeedWidget} feeds and sending {@link GetHelpWidget} support ticket requests.
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * Note that all actions in the controller require an authenticated Craft session via {@link BaseController::allowAnonymous}.
+ *
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- *
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.controllers
+ * @since     1.0
  */
 class DashboardController extends BaseController
 {
+	// Public Methods
+	// =========================================================================
+
 	/**
 	 * Saves a widget.
+	 *
+	 * @return null
 	 */
 	public function actionSaveUserWidget()
 	{
@@ -47,6 +52,8 @@ class DashboardController extends BaseController
 
 	/**
 	 * Deletes a widget.
+	 *
+	 * @return null
 	 */
 	public function actionDeleteUserWidget()
 	{
@@ -61,6 +68,8 @@ class DashboardController extends BaseController
 
 	/**
 	 * Reorders widgets.
+	 *
+	 * @return null
 	 */
 	public function actionReorderUserWidgets()
 	{
@@ -75,6 +84,8 @@ class DashboardController extends BaseController
 
 	/**
 	 * Returns the items for the Feed widget.
+	 *
+	 * @return null
 	 */
 	public function actionGetFeedItems()
 	{
@@ -102,6 +113,8 @@ class DashboardController extends BaseController
 
 	/**
 	 * Creates a new support ticket for the GetHelp widget.
+	 *
+	 * @return null
 	 */
 	public function actionSendSupportRequest()
 	{
@@ -185,8 +198,9 @@ class DashboardController extends BaseController
 
 					if ($getHelpModel->attachDbBackup && IOHelper::folderExists(craft()->path->getDbBackupPath()))
 					{
-						// Make a fresh database backup of the current schema/data.
-						craft()->db->backup();
+						// Make a fresh database backup of the current schema/data. We want all data from all tables
+						// for debugging.
+						craft()->db->backup(array());
 
 						$backups = IOHelper::getLastModifiedFiles(craft()->path->getDbBackupPath(), 3);
 
@@ -312,6 +326,9 @@ class DashboardController extends BaseController
 			)
 		);
 	}
+
+	// Private Methods
+	// =========================================================================
 
 	/**
 	 * @return string

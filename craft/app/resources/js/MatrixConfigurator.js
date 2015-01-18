@@ -1,11 +1,9 @@
 /**
- * Craft by Pixel & Tonic
- *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.resources
  */
 
 (function($){
@@ -83,7 +81,6 @@ Craft.MatrixConfigurator = Garnish.Base.extend(
 		}
 
 		this.blockTypeSort = new Garnish.DragSort($blockTypeItems, {
-			caboose: '<div/>',
 			handle: '.move',
 			axis: 'y'
 		});
@@ -397,7 +394,6 @@ var BlockType = Garnish.Base.extend(
 		this.addListener(this.$settingsBtn, 'click', 'showSettings');
 
 		this.fieldSort = new Garnish.DragSort($fieldItems, {
-			caboose: '<div/>',
 			handle: '.move',
 			axis: 'y',
 			onSortChange: $.proxy(function() {

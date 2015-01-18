@@ -2,47 +2,37 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * Entry model class.
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- * Entry model class
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.models
+ * @since     1.0
  */
 class EntryModel extends BaseElementModel
 {
-	protected $elementType = ElementType::Entry;
+	// Constants
+	// =========================================================================
 
 	const LIVE     = 'live';
 	const PENDING  = 'pending';
 	const EXPIRED  = 'expired';
 
+	// Properties
+	// =========================================================================
+
 	/**
-	 * @access protected
-	 * @return array
+	 * @var string
 	 */
-	protected function defineAttributes()
-	{
-		return array_merge(parent::defineAttributes(), array(
-			'sectionId'  => AttributeType::Number,
-			'typeId'     => AttributeType::Number,
-			'authorId'   => AttributeType::Number,
-			'postDate'   => AttributeType::DateTime,
-			'expiryDate' => AttributeType::DateTime,
+	protected $elementType = ElementType::Entry;
 
-			// Just used for saving entries
-			'parentId'      => AttributeType::Number,
-			'revisionNotes' => AttributeType::String,
-		));
-	}
+	// Public Methods
+	// =========================================================================
 
 	/**
-	 * Returns the field layout used by this element.
+	 * @inheritDoc BaseElementModel::getFieldLayout()
 	 *
 	 * @return FieldLayoutModel|null
 	 */
@@ -57,7 +47,7 @@ class EntryModel extends BaseElementModel
 	}
 
 	/**
-	 * Returns the locale IDs this element is available in.
+	 * @inheritDoc BaseElementModel::getLocales()
 	 *
 	 * @return array
 	 */
@@ -74,7 +64,7 @@ class EntryModel extends BaseElementModel
 	}
 
 	/**
-	 * Returns the URL format used to generate this element's URL.
+	 * @inheritDoc BaseElementModel::getUrlFormat()
 	 *
 	 * @return string|null
 	 */
@@ -165,7 +155,7 @@ class EntryModel extends BaseElementModel
 	}
 
 	/**
-	 * Returns the element's status.
+	 * @inheritDoc BaseElementModel::getStatus()
 	 *
 	 * @return string|null
 	 */
@@ -197,7 +187,7 @@ class EntryModel extends BaseElementModel
 	}
 
 	/**
-	 * Returns whether the current user can edit the element.
+	 * @inheritDoc BaseElementModel::isEditable()
 	 *
 	 * @return bool
 	 */
@@ -213,7 +203,7 @@ class EntryModel extends BaseElementModel
 	}
 
 	/**
-	 * Returns the element's CP edit URL.
+	 * @inheritDoc BaseElementModel::getCpEditUrl()
 	 *
 	 * @return string|false
 	 */
@@ -223,7 +213,8 @@ class EntryModel extends BaseElementModel
 
 		if ($section)
 		{
-			$url = UrlHelper::getCpUrl('entries/'.$section->handle.'/'.$this->id);
+			// The slug *might* not be set if this is a Draft and they've deleted it for whatever reason
+			$url = UrlHelper::getCpUrl('entries/'.$section->handle.'/'.$this->id.($this->slug ? '-'.$this->slug : ''));
 
 			if (craft()->isLocalized() && $this->locale != craft()->language)
 			{
@@ -237,12 +228,35 @@ class EntryModel extends BaseElementModel
 	/**
 	 * Returns the entry's level (formerly "depth").
 	 *
+	 * @deprecated Deprecated in 2.0. Use 'level' instead.
 	 * @return int|null
-	 * @deprecated Deprecated in 2.0.
 	 */
 	public function depth()
 	{
 		craft()->deprecator->log('EntryModel::depth', 'Entries’ ‘depth’ property has been deprecated. Use ‘level’ instead.');
 		return $this->level;
+	}
+
+	// Protected Methods
+	// =========================================================================
+
+	/**
+	 * @inheritDoc BaseModel::defineAttributes()
+	 *
+	 * @return array
+	 */
+	protected function defineAttributes()
+	{
+		return array_merge(parent::defineAttributes(), array(
+			'sectionId'  => AttributeType::Number,
+			'typeId'     => AttributeType::Number,
+			'authorId'   => AttributeType::Number,
+			'postDate'   => AttributeType::DateTime,
+			'expiryDate' => AttributeType::DateTime,
+
+			// Just used for saving entries
+			'parentId'      => AttributeType::Number,
+			'revisionNotes' => AttributeType::String,
+		));
 	}
 }

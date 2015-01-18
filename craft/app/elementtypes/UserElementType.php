@@ -2,22 +2,22 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * The UserElementType class is responsible for implementing and defining users as a native element type in Craft.
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- * User element type
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.elementtypes
+ * @since     1.0
  */
 class UserElementType extends BaseElementType
 {
+	// Public Methods
+	// =========================================================================
+
 	/**
-	 * Returns the element type name.
+	 * @inheritDoc IComponentType::getName()
 	 *
 	 * @return string
 	 */
@@ -27,7 +27,7 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Returns whether this element type has content.
+	 * @inheritDoc IElementType::hasContent()
 	 *
 	 * @return bool
 	 */
@@ -63,9 +63,10 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Returns this element type's sources.
+	 * @inheritDoc IElementType::getSources()
 	 *
 	 * @param string|null $context
+	 *
 	 * @return array|false
 	 */
 	public function getSources($context = null)
@@ -95,7 +96,7 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Defines which model attributes should be searchable.
+	 * @inheritDoc IElementType::defineSearchableAttributes()
 	 *
 	 * @return array
 	 */
@@ -105,9 +106,10 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Returns the attributes that can be shown/sorted by in table views.
+	 * @inheritDoc IElementType::defineTableAttributes()
 	 *
 	 * @param string|null $source
+	 *
 	 * @return array
 	 */
 	public function defineTableAttributes($source = null)
@@ -135,15 +137,14 @@ class UserElementType extends BaseElementType
 		}
 
 		return $attributes;
-
-		return $attributes;
 	}
 
 	/**
-	 * Returns the table view HTML for a given attribute.
+	 * @inheritDoc IElementType::getTableAttributeHtml()
 	 *
 	 * @param BaseElementModel $element
-	 * @param string $attribute
+	 * @param string           $attribute
+	 *
 	 * @return string
 	 */
 	public function getTableAttributeHtml(BaseElementModel $element, $attribute)
@@ -186,7 +187,7 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Defines any custom element criteria attributes for this element type.
+	 * @inheritDoc IElementType::defineCriteriaAttributes()
 	 *
 	 * @return array
 	 */
@@ -210,10 +211,11 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Returns the element query condition for a custom status criteria.
+	 * @inheritDoc IElementType::getElementQueryStatusCondition()
 	 *
 	 * @param DbCommand $query
-	 * @param string $status
+	 * @param string    $status
+	 *
 	 * @return string|false
 	 */
 	public function getElementQueryStatusCondition(DbCommand $query, $status)
@@ -222,10 +224,11 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Modifies an element query targeting elements of this type.
+	 * @inheritDoc IElementType::modifyElementsQuery()
 	 *
-	 * @param DbCommand $query
+	 * @param DbCommand            $query
 	 * @param ElementCriteriaModel $criteria
+	 *
 	 * @return mixed
 	 */
 	public function modifyElementsQuery(DbCommand $query, ElementCriteriaModel $criteria)
@@ -260,11 +263,11 @@ class UserElementType extends BaseElementType
 					->queryScalar();
 			}
 
-			// Find the users that have that permission, either directly or thorugh a group
+			// Find the users that have that permission, either directly or through a group
 			$permittedUserIds = array();
 
-			// If the permission hasn't been assigned to any groups/users before, it won't have an ID.
-			// Don't bail though, since we still want to look for admins.
+			// If the permission hasn't been assigned to any groups/users before, it won't have an ID. Don't bail
+			// though, since we still want to look for admins.
 			if ($permissionId)
 			{
 				// Get the user groups that have that permission
@@ -292,7 +295,7 @@ class UserElementType extends BaseElementType
 
 			if ($permittedUserIds)
 			{
-				$permissionConditions = array('or', 'users.admin = 1', DbHelper::parseParam('elements.id', $permittedUserIds, $query->params));
+				$permissionConditions = array('or', 'users.admin = 1', array('in', 'elements.id', $permittedUserIds));
 			}
 			else
 			{
@@ -311,8 +314,7 @@ class UserElementType extends BaseElementType
 				return false;
 			}
 
-			// TODO: MySQL specific. Manually building the string because DbHelper::parseParam() chokes with large arrays.
-			$query->andWhere('elements.id IN ('.implode(',', $userIds).')');
+			$query->andWhere(array('in', 'elements.id', $userIds));
 		}
 
 		if ($criteria->group)
@@ -325,15 +327,21 @@ class UserElementType extends BaseElementType
 			$groupIdsQuery->where(DbHelper::parseParam('handle', $criteria->group, $groupIdsQuery->params));
 			$groupIds = $groupIdsQuery->queryColumn();
 
+			// In the case where the group doesn't exist.
+			if (!$groupIds)
+			{
+				return false;
+			}
+
 			$userIds = $this->_getUserIdsByGroupIds($groupIds);
 
+			// In case there are no users in the groups.
 			if (!$userIds)
 			{
 				return false;
 			}
 
-			// TODO: MySQL specific. Manually building the string because DbHelper::parseParam() chokes with large arrays.
-			$query->andWhere('elements.id IN ('.implode(',', $userIds).')');
+			$query->andWhere(array('in', 'elements.id', $userIds));
 		}
 
 		if ($criteria->username)
@@ -368,9 +376,10 @@ class UserElementType extends BaseElementType
 	}
 
 	/**
-	 * Populates an element model based on a query result.
+	 * @inheritDoc IElementType::populateElementModel()
 	 *
 	 * @param array $row
+	 *
 	 * @return array
 	 */
 	public function populateElementModel($row)
@@ -378,8 +387,12 @@ class UserElementType extends BaseElementType
 		return UserModel::populateModel($row);
 	}
 
+	// Private Methods
+	// =========================================================================
+
 	/**
 	 * @param $groupIds
+	 *
 	 * @return array
 	 */
 	private function _getUserIdsByGroupIds($groupIds)

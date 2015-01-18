@@ -1,11 +1,9 @@
 /**
- * Craft by Pixel & Tonic
- *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.resources
  */
 
 (function($){
@@ -34,6 +32,25 @@ Craft.RichTextInput = Garnish.Base.extend(
 		this.redactorConfig.lang = redactorLang;
 		this.redactorConfig.direction = Craft.orientation;
 
+		var that = this,
+			originalInitCallback = redactorConfig.initCallback;
+
+		this.redactorConfig.initCallback = function(ev, data)
+		{
+			that.redactor = this;
+			that.onRedactorInit();
+
+			// Did the config have its own callback?
+			if ($.isFunction(originalInitCallback))
+			{
+				return originalInitCallback.call(this, ev, data);
+			}
+			else
+			{
+				return data;
+			}
+		};
+
 		// Initialize Redactor
 		this.$textarea = $('#'+this.id);
 
@@ -58,7 +75,10 @@ Craft.RichTextInput = Garnish.Base.extend(
 	{
 		this.$textarea.redactor(this.redactorConfig);
 		this.redactor = this.$textarea.data('redactor');
+	},
 
+	onRedactorInit: function()
+	{
 		this.replaceRedactorButton('image', Craft.t('Insert image'), null,
 		{
 			from_web:
@@ -72,7 +92,7 @@ Craft.RichTextInput = Garnish.Base.extend(
 				callback: $.proxy(function()
 				{
 					this.redactor.selectionSave();
-					var editor = this.redactor;
+
 					if (typeof this.assetSelectionModal == 'undefined')
 					{
 						this.assetSelectionModal = Craft.createElementSelectorModal('Asset', {
@@ -83,7 +103,7 @@ Craft.RichTextInput = Garnish.Base.extend(
 							{
 								if (assets.length)
 								{
-									editor.selectionRestore();
+									this.redactor.selectionRestore();
 									for (var i = 0; i < assets.length; i++)
 									{
 										var asset = assets[i],
@@ -94,11 +114,11 @@ Craft.RichTextInput = Garnish.Base.extend(
 											url += ':'+transform;
 										}
 
-										editor.insertNode($('<img src="'+url+'" />')[0]);
-										editor.sync();
+										this.redactor.insertNode($('<img src="'+url+'" />')[0]);
+										this.redactor.sync();
 									}
-									editor.observeImages();
-									editor.dropdownHideAll();
+									this.redactor.observeImages();
+									this.redactor.dropdownHideAll();
 								}
 							}, this),
 							closeOtherModals: false,
@@ -122,27 +142,26 @@ Craft.RichTextInput = Garnish.Base.extend(
 				{
 					this.redactor.selectionSave();
 
-					var editor = this.redactor;
 					if (typeof this.entrySelectionModal == 'undefined')
 					{
 						this.entrySelectionModal = Craft.createElementSelectorModal('Entry', {
 							storageKey: 'RichTextFieldType.LinkToEntry',
 							sources: this.sectionSources,
 							criteria: { locale: this.elementLocale },
-							onSelect: function(entries)
+							onSelect: $.proxy(function(entries)
 							{
 								if (entries.length)
 								{
-									editor.selectionRestore();
+									this.redactor.selectionRestore();
 									var entry     = entries[0],
 										url       = entry.url+'#entry:'+entry.id,
-										selection = editor.getSelectionText(),
+										selection = this.redactor.getSelectionText(),
 										title = selection.length > 0 ? selection : entry.label;
-									editor.insertNode($('<a href="'+url+'">'+title+'</a>')[0]);
-									editor.sync();
+									this.redactor.insertNode($('<a href="'+url+'">'+title+'</a>')[0]);
+									this.redactor.sync();
 								}
-								editor.dropdownHideAll();
-							},
+								this.redactor.dropdownHideAll();
+							}, this),
 							closeOtherModals: false
 						});
 					}
@@ -159,26 +178,25 @@ Craft.RichTextInput = Garnish.Base.extend(
 				{
 					this.redactor.selectionSave();
 
-					var editor = this.redactor;
 					if (typeof this.assetLinkSelectionModal == 'undefined')
 					{
 						this.assetLinkSelectionModal = Craft.createElementSelectorModal('Asset', {
 							storageKey: 'RichTextFieldType.LinkToAsset',
 							criteria: { locale: this.elementLocale },
-							onSelect: function(assets)
+							onSelect: $.proxy(function(assets)
 							{
 								if (assets.length)
 								{
-									editor.selectionRestore();
+									this.redactor.selectionRestore();
 									var asset     = assets[0],
 										url       = asset.url+'#asset:'+asset.id,
-										selection = editor.getSelectionText(),
+										selection = this.redactor.getSelectionText(),
 										title     = selection.length > 0 ? selection : asset.label;
-									editor.insertNode($('<a href="'+url+'">'+title+'</a>')[0]);
-									editor.sync();
+									this.redactor.insertNode($('<a href="'+url+'">'+title+'</a>')[0]);
+									this.redactor.sync();
 								}
-								editor.dropdownHideAll();
-							},
+								this.redactor.dropdownHideAll();
+							}, this),
 							closeOtherModals: false,
 							canSelectImageTransforms: true
 						});

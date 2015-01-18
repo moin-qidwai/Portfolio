@@ -2,27 +2,32 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * Class AppHelper
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- *
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.helpers
+ * @since     1.0
  */
 class AppHelper
 {
-	private static $_isPhpDevServer = null;
+	// Properties
+	// =========================================================================
 
 	/**
-	 * Returns whether Craft is running on the dev server bundled with PHP 5.4+
+	 * @var null
+	 */
+	private static $_isPhpDevServer = null;
+
+	// Public Methods
+	// =========================================================================
+
+	/**
+	 * Returns whether Craft is running on the dev server bundled with PHP 5.4+.
 	 *
-	 * @static
-	 * @return bool
+	 * @return bool Whether Craft is running on the PHP Dev Server.
 	 */
 	public static function isPhpDevServer()
 	{
@@ -42,9 +47,9 @@ class AppHelper
 	}
 
 	/**
-	 * Returns an array of all known Craft editions.
+	 * Returns an array of all known Craft editions’ IDs.
 	 *
-	 * @return array
+	 * @return array All the known Craft editions’ IDs.
 	 */
 	public static function getEditions()
 	{
@@ -54,8 +59,9 @@ class AppHelper
 	/**
 	 * Returns the name of the given Craft edition.
 	 *
-	 * @param int $edition
-	 * @return string
+	 * @param int $edition An edition’s ID.
+	 *
+	 * @return string The edition’s name.
 	 */
 	public static function getEditionName($edition)
 	{
@@ -79,8 +85,9 @@ class AppHelper
 	/**
 	 * Returns whether an edition is valid.
 	 *
-	 * @param mixed $edition
-	 * @return bool
+	 * @param mixed $edition An edition’s ID (or is it?)
+	 *
+	 * @return bool Whether $edition is a valid edition ID.
 	 */
 	public static function isValidEdition($edition)
 	{
@@ -90,8 +97,9 @@ class AppHelper
 	/**
 	 * Return a byte value from a size string formatted the way PHP likes it (for example - 64M).
 	 *
-	 * @param $value
-	 * @return int
+	 * @param string $value The size string.
+	 *
+	 * @return int The size in bytes.
 	 */
 	public static function getByteValueFromPhpSizeString($value)
 	{
@@ -104,15 +112,15 @@ class AppHelper
 		}
 
 		// Multiply! Falling through here is intentional.
-		switch ($matches[1])
+		switch (strtolower($matches[1]))
 		{
-			case 'T':
+			case 't':
 				$value *= 1024;
-			case 'G':
+			case 'g':
 				$value *= 1024;
-			case 'M':
+			case 'm':
 				$value *= 1024;
-			case 'K':
+			case 'k':
 				$value *= 1024;
 		}
 

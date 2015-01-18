@@ -2,22 +2,48 @@
 namespace Craft;
 
 /**
- * Craft by Pixel & Tonic
+ * Validates the required User attributes for the installer.
  *
- * @package   Craft
- * @author    Pixel & Tonic, Inc.
+ * @author    Pixel & Tonic, Inc. <support@pixelandtonic.com>
  * @copyright Copyright (c) 2014, Pixel & Tonic, Inc.
  * @license   http://buildwithcraft.com/license Craft License Agreement
- * @link      http://buildwithcraft.com
- */
-
-/**
- * Validates the required User attributes for the installer.
+ * @see       http://buildwithcraft.com
+ * @package   craft.app.models
+ * @since     1.0
  */
 class AccountSettingsModel extends BaseModel
 {
+	// Public Methods
+	// =========================================================================
+
 	/**
-	 * @access protected
+	 * Validates all of the attributes for the current Model. Any attributes that fail validation will additionally get
+	 * logged to the `craft/storage/runtime/logs` folder with a level of LogLevel::Warning.
+	 *
+	 * In addition, we check that the username does not have any whitespace in it.
+	 *
+	 * @param null $attributes
+	 * @param bool $clearErrors
+	 *
+	 * @return bool|null
+	 */
+	public function validate($attributes = null, $clearErrors = true)
+	{
+		// Don't allow whitespace in the username.
+		if (preg_match('/\s+/', $this->username))
+		{
+			$this->addError('username', Craft::t('Spaces are not allowed in the username.'));
+		}
+
+		return parent::validate($attributes, false);
+	}
+
+	// Protected Methods
+	// =========================================================================
+
+	/**
+	 * @inheritDoc BaseModel::defineAttributes()
+	 *
 	 * @return array
 	 */
 	protected function defineAttributes()
@@ -29,21 +55,5 @@ class AccountSettingsModel extends BaseModel
 			'email'    => array(AttributeType::Email, 'required' => true),
 			'password' => array(AttributeType::String, 'minLength' => 6, 'required' => true)
 		);
-	}
-
-	/**
-	 * @param null $attributes
-	 * @param bool $clearErrors
-	 * @return bool|void
-	 */
-	public function validate($attributes = null, $clearErrors = true)
-	{
-		// Don't allow whitespace in the username.
-		if (preg_match('/\s+/', $this->username))
-		{
-			$this->addError('username', Craft::t('Spaces are not allowed in the username.'));
-		}
-
-		return parent::validate($attributes, false);
 	}
 }
