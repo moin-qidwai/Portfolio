@@ -1,9 +1,6 @@
-craft/storage/runtime/*
-craft/storage/backups/*
-
+craft/storage/*
+craft/app/*
 public/assets/uploads/*
-
-craft/config/db.php
 
 Craft-2.1.2564.zip
 
@@ -11,5 +8,5 @@ Craft-2.1.2564.zip
 *.sublime-workspace
 *.sublime-project
 
-install/
+install/*
 portfolio.sql
