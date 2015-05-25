@@ -59,7 +59,7 @@
                         <div class="col-md-3 col-sm-6">
                             <div class="service-item">
                                 <div>
-                                    <img src="{{ craft.Portfolio.cloudinaryEncode( block.logo, '120', siteUrl~'img/bg.jpg' ) }}" class="img-responsive" style="margin-right: auto; margin-left: auto;">
+                                    <img class="employmentLogo img-responsive" src="{{ craft.Portfolio.cloudinaryEncode( block.logo, '120', siteUrl~'img/bg.jpg' ) }}">
                                 </div>
                                 <h4>
                                     <strong>{{ block.heading }}</strong>
@@ -80,7 +80,7 @@
     </section>
 
     <!-- Callout -->
-    <aside  class="callout" data-top="background-position: 0px -100px" data-bottom="background-position: 0px 0px">
+    <aside  class="callout" style="background-image: url('{{ craft.Portfolio.cloudinaryEncode( entry.middleImage, '120', siteUrl~'img/bg.jpg' ) }}')" data-top="background-position: 0px -100px" data-bottom="background-position: 0px 0px">
         <div class="text-vertical-center">
             <h1></h1>
         </div>
@@ -133,12 +133,9 @@
 
     <!-- Map -->
     <section id="contact" class="map">
-        <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Sassoon%20Road%2C%20Pok%20Fu%20Lam%2C%20Hong%20Kong&key=AIzaSyCiBYxWKaaZkTbQMZAAweQAO2A-cVqQeQo"></iframe>
+        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Sassoon%20Road%2C%206b%2C%20Hong%20Kong&key={% if siteUrl == 'http://moin-qidwai.dev/' %}AIzaSyB-1HoNnnBesEdvMWsXXqVoViLSj7L-6tI{% else %}AIzaSyDRj_NBmz7JGR1wnLOWWBCE1K40oZ33-uY{% endif %}"></iframe>
         <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
+        
     </section>
 
 {% endblock %}
