@@ -1,19 +1,11 @@
 {% extends "_layout" %}
 
-{% block header %}
-<div class="top-banner" style="background-image: url('http://fakeimg.pl/1200x400')">
-
-</div>
-{% endblock %}
-
 {% block content %}
 
-{% endblock %}
+<div class="topBanner" style="background-image: url({{ craft.Portfolio.cloudinaryEncode( entry.bannerImage, '500', siteUrl~'img/bg.jpg' ) }})">
 
-{% block footer %}
-
-<div class="container text-center">
-<p class="text-muted">Copyright &copy; Moin Qidwai 2014</p>
 </div>
+
+<h1 class="text-center">This page is under contruction...</h1>
 
 {% endblock %}

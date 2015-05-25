@@ -109,7 +109,7 @@
                         {% endfor %}
                     </div>
                     <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
+                    <a href="{{siteUrl}}projects" class="btn btn-dark">View More Items</a>
                 </div>
                 <!-- /.col-lg-10 -->
             </div>
@@ -124,8 +124,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h3>{{ meetMeText }}</h3>
-                    <a href="#" class="btn btn-lg btn-light">My Blog</a>
-                    <a href="#" class="btn btn-lg btn-dark">Meet Me!</a>
+                    <a href="{{ siteUrl }}blog" class="btn btn-lg btn-light">My Blog</a>
+                    <a href="mailto:{{ footer.email }}" class="btn btn-lg btn-dark">Meet Me!</a>
                 </div>
             </div>
         </div>

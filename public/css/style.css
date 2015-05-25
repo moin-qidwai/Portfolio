@@ -3,3 +3,11 @@
 	margin-left: auto;
 	height: 120px;
 }
+
+.topBanner {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 500px;
+
+}

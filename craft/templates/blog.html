@@ -1,19 +1,21 @@
 {% extends "_layout" %}
 
-{% block header %}
-<div class="top-banner" style="background-image: url('http://fakeimg.pl/1200x400')">
-
-</div>
-{% endblock %}
-
 {% block content %}
 
-{% endblock %}
+<div class="topBanner" style="background-image: url({{ craft.Portfolio.cloudinaryEncode( entry.bannerImage, '500', siteUrl~'img/bg.jpg' ) }})">
 
-{% block footer %}
-
-<div class="container text-center">
-<p class="text-muted">Copyright &copy; Moin Qidwai 2014</p>
 </div>
+
+{% for block in entry.updateMatrix %}
+<div class="container entry-content-div">
+	<div class="entry-title">
+		<h2>{{ block.heading }}</h2>
+	</div>
+	<p style="text-decoration: underline">Date Posted: <i>{{ block.date }}</i></p>
+	<div class="entry-text2">
+		<p>{{ block.text }}</p>
+	</div>
+</div>
+{% endfor %}
 
 {% endblock %}

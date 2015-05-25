@@ -30,7 +30,7 @@
     <link href="{{ siteUrl }}css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ siteUrl}}font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,12 +83,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>{{ entry.contactMeHeading }}</strong>
+                    <h4><strong>{{ footer.contactMeHeading }}</strong>
                     </h4>
-                    {{ entry.address }}
+                    {{ footer.address }}
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> {{ entry.phoneNumber}}</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">{{ entry.email }}</a>
+                        <li><i class="fa fa-phone fa-fw"></i> {{ footer.phoneNumber}}</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:{{ footer.email }}">{{ footer.email }}</a>
                         </li>
                     </ul>
                     <br>
@@ -104,7 +104,7 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Moin Qidwai 2015</p>
+                    <p class="text-muted">{{ footer.copyright }}</p>
                 </div>
             </div>
         </div>
@@ -135,7 +135,10 @@
     });
 
     $(document).ready(function(){
+        if ($(window).width() > 768) {
             skrollr.init({ smoothScrolling: true });
+        };
+            
     });
 
     // Scrolls to the selected menu item on the page

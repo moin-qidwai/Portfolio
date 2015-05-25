@@ -1,10 +1,11 @@
 {% extends "_layout" %}
 
 {% block content %}
-<div class="topBanner" style="background-image: url({{ craft.Portfolio.cloudinaryEncode( entry.bannerImage, '500', siteUrl~'img/bg.jpg' ) }})">
+<div class="topBanner" style="background-image: url({{ siteUrl }}img/bg.jpg)">
 
 </div>
 
+{% for entry in craft.entries.section('projects').find() %}
 <div class="container entry-content-div">
 	<div class="entry-title">
 		<h2>{{ entry.title }}</h2>
@@ -20,7 +21,7 @@
 	<div class="entry-text2">
 		<p>{{ entry.bottomText }}</p>
 	</div>
-
-	
 </div>
+{% endfor %}
+
 {% endblock %}
