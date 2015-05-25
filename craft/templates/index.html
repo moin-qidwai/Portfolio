@@ -22,7 +22,7 @@
 {% block content %}
 
     <!-- Header -->
-    <div id="top" class="header" data-0="background-position: 0px 0px" data-700="background-position: 0px -200px" style="background-image:url('{{ craft.Portfolio.cloudinaryEncode( entry.bannerImage, '600', siteUrl~'img/bg.jpg' ) }}')">
+    <div id="top" class="header" style="background-image:url('{{ craft.Portfolio.cloudinaryEncode( entry.bannerImage, '800', siteUrl~'img/bg.jpg' ) }}')">
         <div class="text-vertical-center">
             <h1>{{ entry.bannerHeading }}</h1>
             <h3>Moin Ahmed Qidwai</h3>
@@ -58,13 +58,9 @@
                     {% for block in entry.employmentLinks %}
                         <div class="col-md-3 col-sm-6">
                             <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                {% if block.sortOrder == 1 %}<i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                                {% elseif block.sortOrder == 2 %}<i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                                {% elseif block.sortOrder == 3 %}<i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                                {% elseif block.sortOrder == 4 %}<i class="fa fa-cloud fa-stack-1x text-primary"></i>{% endif %}
-                            </span>
+                                <div>
+                                    <img src="{{ craft.Portfolio.cloudinaryEncode( block.logo, '120', siteUrl~'img/bg.jpg' ) }}" class="img-responsive" style="margin-right: auto; margin-left: auto;">
+                                </div>
                                 <h4>
                                     <strong>{{ block.heading }}</strong>
                                 </h4>
