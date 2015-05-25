@@ -19,7 +19,7 @@ class PortfolioVariable
 		$localsite = "http://moin-qidwai.dev/"; // replace this with your local url
 		if(craft()->siteUrl != $localsite)
 		{
-			$url = "http://res.cloudinary.com/moin-qidwai/image/fetch/h_".$height.",c_fill/";
+			$url = "http://res.cloudinary.com/moin-qidwai-me/image/fetch/h_".$height.",c_fill/";
 			if(sizeof($imageField) > $index)
 			{
 				$url.= $imageField[$index]->url;
