@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	setInterval(_randomizeHobby, 6000);
+	setInterval(_randomizeHobby, 3000);
 });
 
 function _randomizeHobby(position, hobbies){
@@ -10,11 +10,11 @@ function _randomizeHobby(position, hobbies){
 
 	
 	$('#hobby').offset(position);
-	$('#hobby').hide('slide', {direction: 'left'}, 1000);
+	$('#hobby').hide('slide', {direction: 'left'}, 500);
 	setTimeout(function()
 	{
 		$('#hobby').text(hobbies[Math.floor(Math.random()*hobbies.length)]);
 		$('#hobby').show();
-	}, 1800);
+	}, 1200);
 	
 }
