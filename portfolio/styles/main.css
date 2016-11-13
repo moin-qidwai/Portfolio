@@ -1,0 +1,154 @@
+.main {
+	height: 95vh;
+	background-color: #dddddd;
+}
+
+.center-container {
+	width: 500px;
+	height: 35vh;
+	margin-top: 30vh;
+	margin-bottom: 30vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pacme-image {
+	width: 100%;
+}
+
+.footer {
+	height: 5vh;
+	width: 100vw;
+	background-color: rgba(0,0,0,0.8);
+	position: absolute;
+	bottom: 0;
+}
+
+.footer-text {
+	text-align: right;
+	color: #ffffff;
+	padding-top: 15px;
+	margin-bottom: 0px;
+}
+
+.intro-text-container {
+	margin-bottom: 1px;
+}
+
+.intro-text {
+	background-color: #333333;
+	font-family: helvetica;
+	color: #ffffff;
+	display: inline;
+}
+
+.greeting {
+	font-weight: 800;
+	font-size: 55px;
+	padding: 5px;
+}
+
+.intro {
+	font-weight: 500;
+	font-size: 27px;
+	padding: 2px 5px 2px 5px;
+}
+
+.hobby-intro {
+	font-size: 25px;
+	padding: 2px 5px 2px 5px;
+}
+
+.hobby {
+	position: absolute;
+	font-size: 25px;
+	color: #a8ef7f;
+	padding: 2px 5px 2px 5px;
+	margin-bottom: 0px;
+}
+
+.contact-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.contact-icons-container:first-child {
+	padding-left: 10px;
+}
+
+.contact-icon-container {
+	display: inline-block;
+	padding-top: 12px;
+	padding-right: 15px;
+}
+
+.contact-label {
+	font-family: helvetica;
+	color: #dddddd;
+	padding-right: 10px;
+	font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .pacme-image {
+		display: none;
+	}
+
+	.footer {
+		height: 10vh;
+		width: 100%;
+	}
+
+	.main {
+		height: 90vh;
+		width: 100%;
+	}
+
+	.footer-text {
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.contact-icons-container {
+		text-align: center;
+	}
+
+	.center-container {
+		height: auto;
+		margin-top: 100px;
+		margin-bottom: 0px;
+	}
+}
+
+@media screen and (max-height: 768px) {
+    .pacme-image {
+		display: none;
+	}
+
+	.footer {
+		height: 10vh;
+		width: 100%;
+	}
+
+	.main {
+		height: 90vh;
+		width: 100%;
+	}
+
+	.footer-text {
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.contact-icons-container {
+		text-align: center;
+	}
+
+	.center-container {
+		height: auto;
+		margin-top: 50px;
+		margin-bottom: 0px;
+	}
+}

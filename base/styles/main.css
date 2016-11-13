@@ -1,0 +1,46 @@
+body {
+	background-color: #ffffff;
+}
+
+.base {
+	height: 100vh;
+	width: 100%;
+	background-image: url(../assets/images/natural_history.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.base-overlay {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100vh;
+}
+
+.center-container {
+	width: 300px;
+	height: 30vh;
+	margin-top: 35vh;
+	margin-bottom: 35vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main-link-text {
+	font-size: 40px;
+	padding-left: 10px;
+	width: 300px;
+	color: #ffffff;
+	font-family: helvetica;
+	box-shadow: inset 0 0 0 0 #333333;
+	-webkit-transition: all ease 0.8s;
+	-moz-transition: all ease 0.8s;
+	transition: all ease 0.8s;
+}
+
+.main-link:hover {
+	text-decoration: none;
+}
+
+.main-link-text:hover {
+	box-shadow: inset 300px 0 0 0 #222222;
+}

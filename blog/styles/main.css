@@ -1,0 +1,10 @@
+.alert {
+	margin-top: 45vh;
+	font-family: helvetica;
+	font-style: 20px;
+	text-align: center;
+}
+
+body {
+	background-color: #dddddd;
+}
