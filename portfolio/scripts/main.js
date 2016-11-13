@@ -5,7 +5,7 @@ $(document).ready(function(){
 function _randomizeHobby(position, hobbies){
 
 	var position = $('#hobby').offset();
-	var hobbies = ['Eat', 'Program', 'Hike', 'Play Video Games', 'Play Sports', 'Run', 'Read Articles', 'Exercise', 'Act Stupid'];
+	var hobbies = ['Eating', 'Raspberry PI', 'Hiking', 'LOL', 'GTA', 'Crunches', 'Angular', 'Codeforces', 'Math', 'Augmented Reality', 'Quantum Computing', 'Sugary Tea', 'Open Spaces'];
 	
 
 	
