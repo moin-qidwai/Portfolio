@@ -22,6 +22,7 @@ function _randomizeHobby(position, hobbies){
 		}
 		$('#hobby').text(newHobby);
 		$('#hobby').show();
+		oldHobby = newHobby;
 	}, 1200);
 	
 }
