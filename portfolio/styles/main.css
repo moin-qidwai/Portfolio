@@ -137,7 +137,19 @@
 
 	.center-container {
 		margin-top: 50px;
+	}
 
+	.contact-icons-container {
+		text-align: center;
+		padding-left: 0px;
+	}
+
+	.footer-text {
+		text-align: center;
+	}
+
+	.main {
+		height: 84vh;
 	}
 }
 
