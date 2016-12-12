@@ -132,24 +132,15 @@
 
 @media screen and (min-width: 412px) and (max-width: 732px) and (max-height: 500px) {
 	.footer {
-		height: auto;
+		display: none;
 	}
 
 	.center-container {
 		margin-top: 50px;
 	}
 
-	.contact-icons-container {
-		text-align: center;
-		padding-left: 0px;
-	}
-
-	.footer-text {
-		text-align: center;
-	}
-
 	.main {
-		height: 83vh;
+		height: 100vh;
 	}
 }
 
