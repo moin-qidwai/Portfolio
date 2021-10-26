@@ -65,14 +65,14 @@ export default function Projects() {
                             <div className="mt-4 flex justify-between">
                                 <div>
                                     <h3 className="text-sm font-medium text-gray-700">
-                                        <a href={project.url} target="_blank">
+                                        <a href={project.url} rel="noreferrer" target="_blank">
                                             { project.name }
                                         </a>
                                     </h3>
                                     <p className="mt-1 text-sm text-gray-500">{ project.description }</p>
                                 </div>
                             </div>
-                            <a href={project.url}  target="_blank">
+                            <a href={project.url} rel="noreferrer" target="_blank">
                                 <p className="text-sm py-3 underline cursor-pointer font-medium text-blue-500">
                                     View Website
                                 </p>
