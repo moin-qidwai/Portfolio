@@ -4,7 +4,7 @@ const live_projects = [
     {
         id: "requify",
         name: "Requify",
-        url: "https://requify.net",
+        url: "http://moinqidw.ddns.net:4200",
         image: "/images/requify_card.PNG",
         description: "Requify is a application intended to serve as a motivation profiler of gamers based on their in-game behavioral choices.",
         tech: ["Typescript", "Angular", "ExpressJS", "Kubernetes", "Pulumi", "Keycloak", "ArangoDB", "Minio", "Material"]
