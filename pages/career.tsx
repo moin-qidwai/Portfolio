@@ -1,6 +1,6 @@
 export default function Projects() {
     return (
-        <div>
+        <div className="py-12">
             <div className="max-w-2xl mx-auto py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Credit Suisse - Associate Vice President</h2>
                 <h2 className="text-lg font-medium text-gray-900">Structured Products Lifecycle Management (2018-Current)</h2>
