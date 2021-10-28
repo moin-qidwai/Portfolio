@@ -1,6 +1,6 @@
 export default function Projects() {
     return (
-        <div className="py-12">
+        <div className="mb-20">
             <div className="max-w-2xl mx-auto py-8 px-4 sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Bachelor of Engineering (Computer Science)</h2>
                 <h2 className="text-lg font-medium text-gray-900">University of Hong Kong (2012-2016)</h2>

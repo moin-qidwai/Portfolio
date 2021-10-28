@@ -52,7 +52,7 @@ const defunct_projects = [
 
 export default function Projects() {
     return (
-        <div className="py-12">
+        <div className="mb-6">
             <span className="bg-indigo-300"></span>
             <span className="bg-red-300"></span>
             <span className="bg-yellow-300"></span>
