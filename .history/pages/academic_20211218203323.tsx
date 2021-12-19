@@ -20,8 +20,6 @@ export default function Projects() {
                 <ul className="list-disc list-inside">
                     <li>Advanced Topics in Artificial Intelligence</li>
                 </ul>
-                <p className="text-small font-light text-gray-500">Research Essay</p>
-                <a className="text-blue-500 underline" href="/ai_essay.pdf" target="_blank">A Proposal For Benchmarking Inverse Reinforcement Learning Agents</a>
                 <p className="text-small font-light text-gray-500">Project Report</p>
                 <a className="text-blue-500 underline" href="/report.pdf" target="_blank">Analysis of Contemporary Methodologies For Near-Real Time Collaboration</a>
             </div>
