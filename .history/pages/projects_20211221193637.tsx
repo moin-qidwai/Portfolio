@@ -22,7 +22,7 @@ const live_projects = [
         name: "Orrery",
         url: "https://orrery-five.vercel.app/",
         image: "/images/orrery_card.PNG",
-        description: "Orrery is a UI only prototype of a exotic financial products creation platform for recurring revenue contracts based fixed income investments.",
+        description: "Orrery is a UI only prototype of a exotic financial products creation platform for recurring revenue contracts based fixed income instruments.",
         tech: ["Next.js", "React", "Recoil", "TailwindCSS"]
     },
     {

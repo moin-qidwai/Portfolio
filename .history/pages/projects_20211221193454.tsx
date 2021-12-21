@@ -18,14 +18,6 @@ const live_projects = [
         tech: ["Typescript", "Angular", "Material", "Typescript", "Docker", "Mailgun"]
     },
     {
-        id: "orrery",
-        name: "Orrery",
-        url: "https://orrery-five.vercel.app/",
-        image: "/images/orrery_card.PNG",
-        description: "Orrery is a UI only prototype of a exotic financial products creation platform for recurring revenue contracts based fixed income investments.",
-        tech: ["Next.js", "React", "Recoil", "TailwindCSS"]
-    },
-    {
         id: "portfolio",
         name: "Portfolio",
         url: "http://moin-qidwai.me",
@@ -40,6 +32,14 @@ const live_projects = [
         image: "/images/spread_it_card.png",
         description: "Spread it is a deprecated application that aimed at allowing people to send virtual cards to others for a small fee.",
         tech: ["Ruby", "Rails", "PostgreSQL", "Bootstrap", "Jquery"]
+    },
+    {
+        id: "orrery",
+        name: "Orrery",
+        url: "https://orrery-five.vercel.app/",
+        image: "/images/orrery_card.PNG",
+        description: "Orrery is a small UI only prototype of a exotic financial products creation platform for recurring revenue contracts based fixed income instruments.",
+        tech: ["Next.js", "React", "Recoil", "TailwindCSS"]
     }
 ];
 

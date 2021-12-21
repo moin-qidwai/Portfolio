@@ -18,14 +18,6 @@ const live_projects = [
         tech: ["Typescript", "Angular", "Material", "Typescript", "Docker", "Mailgun"]
     },
     {
-        id: "orrery",
-        name: "Orrery",
-        url: "https://orrery-five.vercel.app/",
-        image: "/images/orrery_card.PNG",
-        description: "Orrery is a UI only prototype of a exotic financial products creation platform for recurring revenue contracts based fixed income investments.",
-        tech: ["Next.js", "React", "Recoil", "TailwindCSS"]
-    },
-    {
         id: "portfolio",
         name: "Portfolio",
         url: "http://moin-qidwai.me",
