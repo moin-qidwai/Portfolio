@@ -27,6 +27,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="flex justify-center my-8 space-x-5 md:space-x-10">
+            <a className="text-blue-500 underline" href="/Curriculum_Vitae.pdf" target="_blank">My Resume</a>
+        </div>
       </main>
     </div>
   )
