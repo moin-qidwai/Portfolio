@@ -12,7 +12,7 @@ const live_projects = [
     {
         id: "pyrho",
         name: "Pyrho",
-        url: "https://orrery-five.vercel.app/",
+        url: "https://pyrho-research.vercel.app/",
         image: "/images/pyrho_card.PNG",
         description: "Pyrho is a simple landing page application to test out demand of parental coaching from professional developmental psychologists.",
         tech: ["Typescript", "Angular", "Material", "Typescript", "Docker", "Mailgun"]
